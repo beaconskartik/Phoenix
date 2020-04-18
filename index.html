@@ -9,7 +9,11 @@
     <script src="amp-frameRateTimecodeCalculator.js"></script>
     <link href="amp.diagnoverlay.css" rel="stylesheet" />
     <script src="amp.diagnoverlay.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--*****END OF diagnoverlay plugin scripts*****-->
     <style type="text/css">
@@ -24,165 +28,20 @@
             text-align: center;
         }
 
-        .body {
-            background-image: url(OMG.png);
-            background-position: center;
-            background-repeat: false;
-            height: 190px;
-        }
-
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-            -webkit-transform-origin: 0 0;
-            -moz-transform-origin: 0 0;
-            transform-origin: 0 0;
-            -webkit-transform: scale(0.9, 0.9);
-            /* Gets the size down to fit into your .thumbnail. */
-            -moz-transform: scale(0.9, 0.9);
-            /* Gets the size down to fit into your .thumbnail. */
-            transform: scale(0.9, 0.9);
-            /* Gets the size down to fit into your .thumbnail. */
-            overflow: hidden;
-
-        }
-
-        #vid1 {
-            width: 800px;
-            height: 450px;
-            margin: 40px;
-        }
-
-        #vid2 {
-            width: 800px;
-            height: 450px;
-            margin: 40px;
-        }
-
-        body {
-            background: linear-gradient(-45deg,rgb(107, 209, 112),rgb(224, 222, 72),rgb(92, 100, 122),  rgb(182, 17, 17));
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .video-play-button {
-            position: absolute;
-            z-index: 10;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            box-sizing: content-box;
-            display: block;
-            width: 32px;
-            height: 44px;
-            /* background: #fa183d; */
-            border-radius: 50%;
-            padding: 18px 20px 18px 28px;
-        }
-
-        .video-play-button:before {
-            content: "";
-            position: absolute;
-            z-index: 0;
-            left: 50%;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            display: block;
-            width: 80px;
-            height: 80px;
-            background: #ba1f24;
-            border-radius: 50%;
-            animation: pulse-border 1500ms ease-out infinite;
-        }
-
-        .video-play-button:after {
-            content: "";
-            position: absolute;
-            z-index: 1;
-            left: 50%;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            display: block;
-            width: 80px;
-            height: 80px;
-            background: #fa183d;
-            border-radius: 50%;
-            transition: all 200ms;
-        }
-
-        .video-play-button:hover:after {
-            background-color: darken(#fa183d, 10%);
-        }
-
-        .video-play-button img {
-            position: relative;
-            z-index: 3;
-            max-width: 100%;
-            width: auto;
-            height: auto;
-        }
-
-        .video-play-button span {
-            display: block;
-            position: relative;
-            z-index: 3;
-            width: 0;
-            height: 0;
-            border-left: 32px solid #fff;
-            border-top: 22px solid transparent;
-            border-bottom: 22px solid transparent;
-        }
-
-        @keyframes pulse-border {
-            0% {
-                transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        .thumbnail {
+        .thumbnails {
             /* the width and height here are your resultant sizes. */
-            width: 600px;
-            height: 300px;
             float: left;
             position: relative;
-            margin: 150px;
-            border-radius: 25px;
+            margin: 5em;
         }
 
-        .thumbnail video {
+        .thumbnails video {
             /* the width and height here are your "unshrunken" sizes.  Important bc of the scale variable later. */
             position: relative;
             z-index: 1;
-            width: 1000px;
-            height: 750px;
-
             -webkit-transform-origin: 0 0;
             -moz-transform-origin: 0 0;
             transform-origin: 0 0;
-
-
             -webkit-transform: scale(1.0, 1.0);
             /* Gets the size down to fit into your .thumbnail. */
             -moz-transform: scale(1.0, 1.0);
@@ -193,118 +52,94 @@
 
         }
 
-        .button-box {
-            margin-left: 10900000px;
-            text-align: center;
+        @media only screen and (max-width:800px) {
+
+            /* For tablets: */
+            .main {
+                width: 80%;
+                padding: 0;
+            }
+
+            .right {
+                width: 100%;
+            }
         }
-        .flex-column{
-            display: flex;
-            flex-direction: column;
+
+        @media only screen and (max-width:500px) {
+
+            /* For mobile phones: */
+            .menu,
+            .main,
+            .right {
+                width: 100%;
+            }
+        }
+
+        #playButton2 {
+            margin-top: 12em;
         }
     </style>
 </head>
 
-<body>
-    <div class="body">
+<body class="well">
+    <div>
+        <h1>This is a demo page, to test the efficacy of a CDN for video delivery.</h1>
     </div>
-    <div class="flex-column">
-    <div class="flex-container">
-        <div class="azuremediaplayer-dimensions thumbnail">
-            <h1>With CDN</h1>
-            <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
-                autoplay width="992" height="560" tabindex="0">
-                <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
-                    browser that supports HTML5 video</p>
-            </video>
-            <script>
-                var amPlayer = amp('azuremediaplayer', {
-                    "nativeControlsForTouch": false,
-                    autoPlay: false,
-                    headers: ['Expires', 'Pragma'],
-                    plugins: getPlugins(),
-                    width: "700",
-                    height: "500",
-                });
+    <div class="main well">
+        <div class="flex-container">
+            <div class="thumbnails">
+                <h1>With CDN</h1>
+                <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
+                    autoplay tabindex="0">
+                    <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
+                        browser that supports HTML5 video</p>
+                </video>
+                <script>
+                    var amPlayer = amp('azuremediaplayer', {
+                        "nativeControlsForTouch": false,
+                        autoPlay: false,
+                        headers: ['Expires', 'Pragma'],
+                        width: "690",
+                        height: "390",
+                    });
 
-                amPlayer.src([{ // a live stream
-                    src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
-                    type: "application/vnd.ms-sstr+xml"
-                }]);
+                    amPlayer.src([{ // a live stream
+                        src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+                        type: "application/vnd.ms-sstr+xml"
+                    }]);
+                </script>
+            </div>
+            <div>
+                <a id="playButton2" class="btn btn-primary" href="#">Play/Pause</a>
+                <script>
+                    $('#playButton2').on('click', function (e) {
+                        $('.vjs-play-control').click();
+                    });
+                </script>
+            </div>
+            <div class="thumbnails">
+                <h1>Without CDN</h1>
+                <video id="azuremediaplayer2" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
+                    autoplay tabindex="0">
+                    <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
+                        browser that supports HTML5 video</p>
+                </video>
+                <script>
+                    var amPlayer = amp('azuremediaplayer2', {
+                        "nativeControlsForTouch": false,
+                        autoPlay: false,
+                        headers: ['Expires', 'Pragma'],
+                        width: "690",
+                        height: "390",
+                    });
 
-                function getPlugins() {
-                    var plugins = {};
-                    //diagnoverlay
-                    plugins.diagnoverlay = {
-                        title: "Diagnoverlay",               //overlay title
-                        x: "left",                           //overlay position 
-                        y: "top",
-                        opacity: 0.6,                        //overlay background opacity
-                        bgColor: "Black",                    //overlay background color
-                        image: "poster.png"  //image URL. Skip it if do not need image
-                    }
-
-                    return plugins;
-                }
-            </script>
+                    amPlayer.src([{ // a live stream
+                        src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+                        type: "application/vnd.ms-sstr+xml"
+                    }]);
+                </script>
+            </div>
         </div>
-
-        <div class="azuremediaplayer-dimensions thumbnail">
-            <h1>Without CDN</h1>
-            <video id="azuremediaplayer2" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
-                autoplay width="992" height="560" tabindex="0">
-                <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
-                    browser that supports HTML5 video</p>
-            </video>
-            <script>
-                var amPlayer = amp('azuremediaplayer2', {
-                    "nativeControlsForTouch": false,
-                    autoPlay: false,
-                    headers: ['Expires', 'Pragma'],
-                    plugins: getPlugins(),
-                    width: "700",
-                    height: "500",
-                });
-
-                amPlayer.src([{ // a live stream
-                    src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
-                    type: "application/vnd.ms-sstr+xml"
-                }]);
-
-                function getPlugins() {
-                    var plugins = {};
-                    //diagnoverlay
-                    plugins.diagnoverlay = {
-                        title: "Diagnoverlay",               //overlay title
-                        x: "left",                           //overlay position 
-                        y: "top",
-                        opacity: 0.6,                        //overlay background opacity
-                        bgColor: "Black",                    //overlay background color
-                        image: "poster.png"  //image URL. Skip it if do not need image
-                    }
-                    return plugins;
-                }
-            </script>
-        </div>
-    </div>
-    
-    <div class = "flex-container">
-    <div class="thumbnail hide">`
-    </div>
-    <div class="thumbnail">`
-        <div class="baccha"">
-            <a id="playButton2" class="video-play-button"> <span></span></a>
-
-            <script>
-                $('#playButton2').on('click', function (e) {
-                    e.preventDefault();
-                    $('.vjs-big-play-button').click();
-                });
-            </script>
-        </div>
-    </div> 
-    <div class="thumbnail hide">`
-    </div> 
-    </div>
     </div>
 </body>
 
