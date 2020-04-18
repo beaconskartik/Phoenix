@@ -51,30 +51,20 @@
             overflow: hidden;
 
         }
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+}
 
-        @media only screen and (max-width:800px) {
-
-            /* For tablets: */
-            .main {
-                width: 80%;
-                padding: 0;
-            }
-
-            .right {
-                width: 100%;
-            }
-        }
-
-        @media only screen and (max-width:500px) {
-
-            /* For mobile phones: */
-            .menu,
-            .main,
-            .right {
-                width: 100%;
-            }
-        }
-
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}
         #playButton2 {
             margin-top: 12em;
         }
