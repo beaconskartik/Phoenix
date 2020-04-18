@@ -21,11 +21,13 @@
             display: flex;
             flex-direction: row;
         }
-        body{ margin:0 auto; }
+
         h1 {
             font-family: 'Oswald', sans-serif;
-            align-self: center;
-            text-align: center;
+        }
+
+        body {
+            margin: 0 auto;
         }
 
         .thumbnails {
@@ -51,20 +53,13 @@
             overflow: hidden;
 
         }
-/* ----------- Non-Retina Screens ----------- */
-@media screen 
-  and (min-device-width: 1200px) 
-  and (max-device-width: 1600px) 
-  and (-webkit-min-device-pixel-ratio: 1) { 
-}
 
-/* ----------- Retina Screens ----------- */
-@media screen 
-  and (min-device-width: 1200px) 
-  and (max-device-width: 1600px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (min-resolution: 192dpi) { 
-}
+        /* ----------- Non-Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {}
+
+        /* ----------- Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {}
+
         #playButton2 {
             margin-top: 12em;
         }
@@ -78,26 +73,29 @@
     <div class="main well">
         <div class="flex-container">
             <div class="thumbnails">
-                <h1>With CDN</h1>
-                <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
-                    tabindex="0">
-                    <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
-                        browser that supports HTML5 video</p>
-                </video>
-                <script>
-                    var amPlayer = amp('azuremediaplayer', {
-                        "nativeControlsForTouch": false,
-                        autoPlay: false,
-                        headers: ['Expires', 'Pragma'],
-                        width: "690",
-                        height: "390",
-                    });
+                <div class="framer">
+                    <h1>With CDN</h1>
+                    <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered"
+                        controls tabindex="0">
+                        <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a
+                            web
+                            browser that supports HTML5 video</p>
+                    </video>
+                    <script>
+                        var amPlayer = amp('azuremediaplayer', {
+                            "nativeControlsForTouch": false,
+                            autoPlay: false,
+                            headers: ['Expires', 'Pragma'],
+                            width: "400",
+                            height: "400",
+                        });
 
-                    amPlayer.src([{ // a live stream
-                        src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
-                        type: "application/vnd.ms-sstr+xml"
-                    }]);
-                </script>
+                        amPlayer.src([{ // a live stream
+                            src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+                            type: "application/vnd.ms-sstr+xml"
+                        }]);
+                    </script>
+                </div>
             </div>
             <div>
                 <a id="playButton2" class="btn btn-primary" href="#">Play/Pause</a>
@@ -107,6 +105,7 @@
                     });
                 </script>
             </div>
+            <div>
             <div class="thumbnails">
                 <h1>Without CDN</h1>
                 <video id="azuremediaplayer2" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
@@ -119,8 +118,8 @@
                         "nativeControlsForTouch": false,
                         autoPlay: false,
                         headers: ['Expires', 'Pragma'],
-                        width: "690",
-                        height: "390",
+                        width: "400",
+                        height: "400",
                     });
 
                     amPlayer.src([{ // a live stream
@@ -129,6 +128,7 @@
                     }]);
                 </script>
             </div>
+        </div>
         </div>
     </div>
 </body>
