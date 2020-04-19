@@ -85,6 +85,7 @@
                             headers: ['Expires', 'Pragma'],
                             width: "400",
                             height: "400",
+                            corsPolicy: "UseCredentials"
                         });
 
                         amPlayer.src([{ // a live stream
@@ -117,11 +118,12 @@
                         headers: ['Expires', 'Pragma'],
                         width: "400",
                         height: "400",
+                        corsPolicy: "UseCredentials"
                     });
 
                     amPlayer.src([{ // a live stream
-                        src: "https://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
-                        type: "application/vnd.ms-sstr+xml"
+                        src: "https://centralus2.mediad.svc.ms/transform/videomanifest?provider=url&amp;inputFormat=mp4&amp;docid=https://metastoragecentralus.blob.core.windows.net/testfiles/Videos/jayanti.mp4&amp;part=index&amp;format=dash&amp;altManifestMetadata=1&amp;pretranscode=0&amp;transcodeahead=0&amp;enableEncryption=1",
+                        type: "application/dash+xml"
                     }]);
                 </script>
             </div>
