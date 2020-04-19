@@ -78,24 +78,42 @@
                             web
                             browser that supports HTML5 video</p>
                     </video>
-                    <script>
-                        var amPlayer = amp('azuremediaplayer', {
-                            "nativeControlsForTouch": false,
-                            autoPlay: false,
-                            headers: ['Expires', 'Pragma'],
-                            width: "400",
-                            height: "400",
-                            corsPolicy: "UseCredentials"
-                        });
-
-                        amPlayer.src([{ // a live stream
-                            src: "https://beaconskartik.github.io/apihosting/noncdn.mpd",
-                            type: "application/dash+xml",
-                            protectionInfo: [{"type": "AES"}]
-                        }]);
-                    </script>
-                </div>
-            </div>
+            <script>
+                var amPlayer = amp('azuremediaplayer', {
+                    "nativeControlsForTouch": false,
+                    headers: ['Expires', 'Pragma'],
+                    plugins: getPlugins()
+                });
+        
+                amPlayer.src([{ // a live stream
+                    src: "https://beaconskartik.github.io/apihosting/noncdn.mpd",
+                    type: "application/dash+xml"
+                }]);
+        
+                function getPlugins() {
+                    var plugins = {};
+        
+                    //for framerate and timescale values in the overlay, this plugin is used. If you do not include this plugin, those 2 values will not be displayed. 
+                    //frameRateTimecodeCalculator
+                    plugins.frameRateTimecodeCalculator = {
+                        default:   30.123,    // Optional: default frame rate value to use if calculation fails; if not provided, the default value is 30
+                        timeScale: 10000000,  // Optional: default time scale value to use if client manifest parsing fails: if not provided, the default value is 10000000
+                        dropFrame: true       // Optional: flag to determine whether to use drop frame timecode or not for 29.97fps; if not provided, the default value is false (non-drop frame timecode)
+                    };
+        
+                    //diagnoverlay
+                    plugins.diagnoverlay = {
+                        title: "Diagnoverlay",               //overlay title
+                        x: "left",                           //overlay position 
+                        y: "top",
+                        opacity: 0.6,                        //overlay background opacity
+                        bgColor: "Black",                    //overlay background color
+                        image: "Content/images/AMSLogo.png"  //image URL. Skip it if do not need image
+                    }
+        
+                    return plugins;
+                }
+            </script>
             <div>
                 <a id="playButton2" class="btn btn-primary" href="#">Play/Pause</a>
                 <script>
@@ -111,23 +129,43 @@
                     tabindex="0">
                     <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
                         browser that supports HTML5 video</p>
-                </video>
-                <script>
-                    var amPlayer = amp('azuremediaplayer2', {
-                        "nativeControlsForTouch": false,
-                        autoPlay: false,
-                        headers: ['Expires', 'Pragma'],
-                        width: "400",
-                        height: "400",
-                        corsPolicy: "UseCredentials"
-                    });
-
-                    amPlayer.src([{ // a live stream
-                        src: "https://beaconskartik.github.io/apihosting/cdn.mpd",
-                        type: "application/dash+xml",
-                        protectionInfo: [{"type": "AES"}]
-                    }]);
-                </script>
+                </video>        
+            <script>
+                var amPlayer = amp('azuremediaplayer2', {
+                    "nativeControlsForTouch": false,
+                    headers: ['Expires', 'Pragma'],
+                    plugins: getPlugins()
+                });
+        
+                amPlayer.src([{ // a live stream
+                    src: "https://beaconskartik.github.io/apihosting/cdn.mpd",
+                    type: "application/dash+xml"
+                }]);
+        
+                function getPlugins() {
+                    var plugins = {};
+        
+                    //for framerate and timescale values in the overlay, this plugin is used. If you do not include this plugin, those 2 values will not be displayed. 
+                    //frameRateTimecodeCalculator
+                    plugins.frameRateTimecodeCalculator = {
+                        default:   30.123,    // Optional: default frame rate value to use if calculation fails; if not provided, the default value is 30
+                        timeScale: 10000000,  // Optional: default time scale value to use if client manifest parsing fails: if not provided, the default value is 10000000
+                        dropFrame: true       // Optional: flag to determine whether to use drop frame timecode or not for 29.97fps; if not provided, the default value is false (non-drop frame timecode)
+                    };
+        
+                    //diagnoverlay
+                    plugins.diagnoverlay = {
+                        title: "Diagnoverlay",               //overlay title
+                        x: "left",                           //overlay position 
+                        y: "top",
+                        opacity: 0.6,                        //overlay background opacity
+                        bgColor: "Black",                    //overlay background color
+                        image: "Content/images/AMSLogo.png"  //image URL. Skip it if do not need image
+                    }
+        
+                    return plugins;
+                }
+            </script>
             </div>
         </div>
         </div>
