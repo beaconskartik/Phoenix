@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164068124-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-164068124-1');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link href="https://amp.azure.net/libs/amp/latest/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
+    <script src="https://amp.azure.net/libs/amp/latest/azuremediaplayer.min.js"></script>
+    <!--*****START OF AMP diagnoverlay plugin scripts*****-->
+    <script src="amp-frameRateTimecodeCalculator.js"></script>
+    <link href="amp.diagnoverlay.css" rel="stylesheet" />
+    <script src="amp.diagnoverlay.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--*****END OF diagnoverlay plugin scripts*****-->
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        body {
+            margin: 0 auto;
+        }
+
+        .thumbnails {
+            /* the width and height here are your resultant sizes. */
+            float: left;
+            position: relative;
+            margin: 5em;
+        }
+
+        .thumbnails video {
+            /* the width and height here are your "unshrunken" sizes.  Important bc of the scale variable later. */
+            position: relative;
+            z-index: 1;
+            -webkit-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scale(1.0, 1.0);
+            /* Gets the size down to fit into your .thumbnail. */
+            -moz-transform: scale(1.0, 1.0);
+            /* Gets the size down to fit into your .thumbnail. */
+            transform: scale(1.0, 1.0);
+            /* Gets the size down to fit into your .thumbnail. */
+            overflow: hidden;
+
+        }
+
+        /* ----------- Non-Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {}
+
+        /* ----------- Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {}
+
+        #playButton2 {
+            margin-top: 12em;
+        }
+    </style>
+</head>
+
+<body class="well">
+    <div class="main well">
+         <h4> <center>Please try in browser's incognito window for better experience</center></h4>
+        <div class="flex-container">
+            <div class="thumbnails">
+                <div class="framer">
+                    <h1>ODSP Media without CDN</h1>
+                    <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered"
+                        controls tabindex="0">
+                        <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a
+                            web
+                            browser that supports HTML5 video</p>
+                    </video>
+                    <script>
+                        var amPlayer = amp('azuremediaplayer', {
+                            "nativeControlsForTouch": false,
+                            autoPlay: true,
+                            headers: ['Expires', 'Pragma'],
+                            width: "400",
+                            height: "400",
+                            corsPolicy: "UseCredentials"
+                        });
+
+                        amPlayer.src([{ // a live stream
+                            src: "https://beaconskartik.github.io/apihosting/noncdn.mpd?micirosoftId=kasachan&location=IDCNoida",
+                            type: "application/dash+xml",
+                            protectionInfo: [{"type": "AES"}]
+                        }]);
+                        amPlayer.muted(true);
+                        amPlayer.autoplay(true);
+                    </script>
+                </div>
+            </div>
+            <div>
+                <a id="playButton2" class="btn btn-primary" href="#">Play/Pause</a>
+                <script>
+                    $('#playButton2').on('click', function (e) {
+                        $('.vjs-play-control').click();
+                    });
+                    $('.vjs-play-control').click();
+                </script>
+            </div>
+            <div>
+            <!-- <div class="thumbnails">
+                <h1>ODSP Encrypted Media with CDN</h1>
+                <video id="azuremediaplayer2" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls
+                    tabindex="0">
+                    <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web
+                        browser that supports HTML5 video</p>
+                </video>
+                <script>
+                    var amPlayer = amp('azuremediaplayer2', {
+                        "nativeControlsForTouch": false,
+                        autoPlay: true,
+                        headers: ['Expires', 'Pragma'],
+                        width: "400",
+                        height: "400",
+                        corsPolicy: "UseCredentials"
+                    });
+
+                    amPlayer.src([{ // a live stream
+                        src: "https://beaconskartik.github.io/apihosting/cdn.mpd",
+                        type: "application/dash+xml",
+                        protectionInfo: [{"type": "AES"}]
+                    }]);
+                    amPlayer.muted(true);
+                    amPlayer.autoplay(true);
+                </script>
+            </div> -->
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>
